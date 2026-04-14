@@ -133,8 +133,7 @@ addArrow(2, 5, 8);
 
 > **NOT in arrow functions**
 
-```
-## 箭头函数的特殊点
+箭头函数的特殊点
 
 箭头函数：
 - 有自己的参数（parameters）
@@ -154,13 +153,15 @@ const add = (a, b) => a + b;
 
 如果需要获取不定数量参数，可以用 rest parameter：
 
-```markdown
+```javascript
 const fn = (...args) => {
   console.log(args);
-};
----
 
-# 8. 一句话总结
+};
+
+```
+
+一句话总结
 
 > **箭头函数不是不能用参数，而是没有普通函数那种自动生成的 `arguments` 和 `this`。**
 
@@ -168,6 +169,5 @@ const fn = (...args) => {
 
 **“普通函数和箭头函数到底什么时候该用哪个？”**  
 这个在前端里非常常用。
-```
 
 ![](./images/Compiled code starts.png)
