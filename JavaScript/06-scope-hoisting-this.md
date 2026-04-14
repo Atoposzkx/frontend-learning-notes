@@ -18,7 +18,7 @@
 
 所以“提升”是现象，不是代码移动。
 
-------
+---
 
 二、为什么会有 hoisting
 
@@ -37,13 +37,13 @@ JS 会先扫描当前作用域，处理：
 
 才真正一行一行执行代码。
 
-------
+---
 
 三、最重要：不同声明，提升行为不一样
 
 这块是核心。
 
-------
+---
 
 1）函数声明 `function`
 
@@ -69,7 +69,7 @@ hello = function hello() { ... }
 
 在执行前就可用了。
 
-------
+---
 
 2）`var`
 
@@ -102,7 +102,7 @@ console.log(a); // undefined
 a = 10;
 ```
 
-------
+---
 
 3）`let` 和 `const`
 
@@ -123,7 +123,7 @@ ReferenceError
 
 > **TDZ（Temporal Dead Zone，暂时性死区）**
 
-------
+---
 
 四、什么是 TDZ（暂时性死区）
 
@@ -137,7 +137,7 @@ ReferenceError
 
 > **暂时性死区**
 
-------
+---
 
 例子
 
@@ -147,9 +147,9 @@ let age = 30;
 ```
 
 不是说 `age` 根本不存在，
- 而是它还在 TDZ 里，不能碰。
+而是它还在 TDZ 里，不能碰。
 
-------
+---
 
 `const` 也是一样
 
@@ -158,7 +158,7 @@ console.log(name); // ReferenceError
 const name = "Jonas";
 ```
 
-------
+---
 
 五、为什么很多人说 let/const “不提升”
 
@@ -180,7 +180,7 @@ let 和 const 不提升
 let 和 const 会提升，但在声明前处于 TDZ，不能访问
 ```
 
-------
+---
 
 六、函数表达式和箭头函数的提升
 
@@ -197,9 +197,9 @@ const Age3 = birthday => ...;
 - 变量里存了一个函数
 
 所以它们的提升规则不是按“函数声明”算，
- 而是按变量类型算。
+而是按变量类型算。
 
-------
+---
 
 1）`var` + 函数表达式
 
@@ -211,7 +211,7 @@ var test = function () {
 ```
 
 这里 `test` 是 `var`，
- 所以先提升为 `undefined`。
+所以先提升为 `undefined`。
 
 如果你这样写：
 
@@ -230,7 +230,7 @@ TypeError: test is not a function
 
 因为这时候 `test` 只是 `undefined`，还不是函数。
 
-------
+---
 
 2）`let/const` + 函数表达式 / 箭头函数
 
@@ -252,8 +252,6 @@ const add = () => {
 
 因为 `test` / `add` 在 TDZ 中。
 
-
-
 ---
 
 十、超短版总结
@@ -264,22 +262,18 @@ var：提升为 undefined
 let / const：提升但在 TDZ 中
 ```
 
-------
-
-
+---
 
 ## 2.this关键字
 
-![](./images/thi s keyword.png)
+![](./images/this_keyword.png)
 
 可以，这张图你可以记成一份 **`this` 基础总结笔记**。
-
-
 
 #### 1. `this` 是什么
 
 ```js
-this
+this;
 ```
 
 `this` 是 JavaScript 在**函数执行时**自动提供的一个特殊变量。
@@ -297,7 +291,7 @@ this
 
 > `this` 看“调用方式”，不看“定义位置”
 
-------
+---
 
 #### 2. `this` 属于执行上下文的一部分
 
@@ -311,11 +305,11 @@ this
 
 > 每次函数执行时，JS 都会为它确定一个 `this`
 
-------
+---
 
 #### 3. 不同调用方式下，`this` 的值
 
-------
+---
 
 ##### （1）方法调用：`this = 调用该方法的对象`
 
@@ -334,28 +328,28 @@ jonas.calAge();
 这里：
 
 ```js
-jonas.calAge()
+jonas.calAge();
 ```
 
 是“对象调用方法”，所以：
 
 ```js
-this === jonas
+this === jonas;
 ```
 
 因此：
 
 ```js
-this.year
+this.year;
 ```
 
 就是：
 
 ```js
-jonas.year
+jonas.year;
 ```
 
-------
+---
 
 ##### （2）普通函数调用：`this = undefined`（严格模式）
 
@@ -370,18 +364,18 @@ test();
 在 **strict mode** 下：
 
 ```js
-this === undefined
+this === undefined;
 ```
 
 如果不是严格模式，在浏览器里通常是：
 
 ```js
-this === window
+this === window;
 ```
 
 这个是图里红字写的内容。
 
-------
+---
 
 ##### （3）箭头函数：没有自己的 `this`
 
@@ -409,7 +403,7 @@ lexical this
 
 > 箭头函数没有自己的 `this`
 
-------
+---
 
 ##### （4）事件监听函数：`this = 绑定事件的 DOM 元素`
 
@@ -422,12 +416,12 @@ button.addEventListener("click", function () {
 这里的 `this` 一般指向：
 
 ```js
-button
+button;
 ```
 
 也就是**这个事件处理函数挂载到哪个 DOM 元素上，`this` 就通常指向哪个元素**
 
-------
+---
 
 ##### （5）`new / call / apply / bind`
 
@@ -437,7 +431,7 @@ button
 
 你现在先记住名字就行，后面单独学。
 
-------
+---
 
 ##### 4. 这张图最核心的一句话
 
@@ -455,7 +449,7 @@ button
 - 是事件回调？
 - 是不是用了 `new / call / apply / bind`？
 
-------
+---
 
 ##### 5. 图右边例子的意思
 
@@ -480,13 +474,13 @@ jonas.calAge();
 于是：
 
 ```js
-this.year
+this.year;
 ```
 
 等价于：
 
 ```js
-jonas.year
+jonas.year;
 ```
 
 结果就是：
@@ -495,7 +489,7 @@ jonas.year
 2037 - 1989 = 48
 ```
 
-------
+---
 
 6. 最后一句提醒
 
@@ -517,7 +511,7 @@ function test() {
 
 这里的 `this` 不是 `test` 这个函数对象。
 
-------
+---
 
 > `this` also NOT its variable environment
 
@@ -532,7 +526,7 @@ function test() {
 
 这个特别容易混。
 
-------
+---
 
 `this` 总结
 
@@ -557,7 +551,7 @@ function test() {
 - `this` 看**调用方式**
 - 箭头函数**没有自己的 `this`**
 
-------
+---
 
 ## 3.栈内存与堆内存
 
@@ -565,18 +559,11 @@ function test() {
 
 ## 4.作用域，scope总结笔记
 
+![](./images/longshot20260403141240.png)
 
+![](./images/longshot20260403142446.png)
 
-![](/Users/atoposzkx/code/fronted-learning/frontend-learning-notes/JavaScript/images/longshot20260403141240.png)
-
-
-
-
-
-![](/Users/atoposzkx/code/fronted-learning/frontend-learning-notes/JavaScript/images/longshot20260403142446.png)
-
-
-------
+---
 
 #### 1.Scoping 主要回答两个问题：
 
@@ -588,7 +575,7 @@ function test() {
 > **Where do variables live?**
 > **Where can we access a variable?**
 
-------
+---
 
 #### 2. JavaScript 有 3 种作用域
 
@@ -600,7 +587,7 @@ function test() {
 const name = "Jonas";
 ```
 
-------
+---
 
 ##### ② Function Scope（函数作用域）
 
@@ -612,7 +599,7 @@ function test() {
 }
 ```
 
-------
+---
 
 ##### ③ Block Scope5（块级作用域）
 
@@ -631,7 +618,7 @@ if (true) {
 }
 ```
 
-------
+---
 
 #### 3. `let` / `const 和 `var` 的区别
 
@@ -653,7 +640,7 @@ console.log(a); // 1
 console.log(b); // 报错
 ```
 
-------
+---
 
 #### 4. JavaScript 是词法作用域（Lexical Scoping）
 
@@ -669,7 +656,7 @@ console.log(b); // 报错
 
 这些在代码写出来时，作用域关系就已经确定了。
 
-------
+---
 
 #### 5. 什么是 Scope Chain（作用域链）
 
@@ -681,7 +668,7 @@ console.log(b); // 报错
 
 也就是当前作用域找不到变量时，会沿着外层一层层向上找。
 
-------
+---
 
 #### 6. 什么是变量查找（Variable Lookup）
 
@@ -696,7 +683,7 @@ console.log(b); // 报错
 
 > **variable lookup**
 
-------
+---
 
 #### 7. 作用域链是单向的
 
@@ -710,7 +697,7 @@ console.log(b); // 报错
 - 子作用域可以向外找
 - 父作用域永远不能反过来访问子作用域里的局部变量
 
-------
+---
 
 #### 8. 作用域链 ≠ 调用顺序
 
@@ -724,46 +711,55 @@ console.log(b); // 报错
 - `call stack` 看谁调用了谁
 - `scope chain` 看函数写在哪里
 
-# 
+#
 
 ```md
 ## Scope / Scoping / Scope Chain 总结
 
 ### 1. Scope
+
 作用域表示变量在代码中的可访问范围。
 
 ### 2. JavaScript 中的 3 种作用域
+
 - 全局作用域（Global Scope）
 - 函数作用域（Function Scope）
 - 块级作用域（Block Scope）
 
 ### 3. let / const / var
+
 - let 和 const 是块级作用域
 - var 不是块级作用域，而是函数作用域
 
 ### 4. Scoping
+
 Scoping 是 JavaScript 管理变量可访问性的规则。
 
 ### 5. Lexical Scoping
+
 JavaScript 使用词法作用域：
 变量是否可访问，由代码书写位置决定，而不是由函数调用位置决定。
 
 ### 6. Scope Chain
+
 每个作用域都能访问外层作用域的变量，这种层层向外的关系叫作用域链。
 
 ### 7. Variable Lookup
+
 当前作用域找不到变量时，JavaScript 会沿着作用域链向外查找。
 
 ### 8. 单向性
+
 作用域链是单向的：
 内层可以访问外层，外层不能访问内层。
 
 ### 9. 重要区别
+
 - 调用栈（Call Stack）看函数调用顺序
 - 作用域链（Scope Chain）看函数定义位置
 ```
 
-# 
+#
 
 ```txt
 scope = 变量能在哪访问
@@ -774,4 +770,3 @@ scope chain = 当前找不到变量时，一层层向外找
 1. **JavaScript 是词法作用域**
 2. **内层作用域可以访问外层变量**
 3. **作用域链和函数调用顺序无关，只和定义位置有关**
-

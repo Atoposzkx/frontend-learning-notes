@@ -36,7 +36,6 @@ const yearsUntilRetirement = (birthYear, firstName) => {
 
 console.log(yearsUntilRetirement(1991, "Jonas"));
 console.log(yearsUntilRetirement(1980, "Bob"));
-
 ```
 
 ## 2.箭头函数/arguments（重点，特意拿出来）
@@ -46,14 +45,14 @@ console.log(yearsUntilRetirement(1980, "Bob"));
 示例代码：
 
 ```js
-'use strict';
+"use strict";
 
 //scope in practice
 
 //Regular Functions vs Arrow Functions
 
 const jonas = {
-  firstName: 'zkx',
+  firstName: "zkx",
   year: 2006,
 
   //method:this = 调用该方法的对象
@@ -111,7 +110,6 @@ const addArrow = (...args) => {
 
 addArrow(2, 5, 8);
 addArrow(2, 5, 8);
-
 ```
 
 对于**普通函数执行上下文**，常说有：
@@ -136,6 +134,7 @@ addArrow(2, 5, 8);
 箭头函数的特殊点
 
 箭头函数：
+
 - 有自己的参数（parameters）
 - 没有自己的 arguments 对象
 - 没有自己的 this
@@ -145,6 +144,7 @@ addArrow(2, 5, 8);
 “没有自己的 arguments” 不等于 “不能传参数”。
 
 例如：
+
 ```js
 const add = (a, b) => a + b;
 ```
@@ -156,9 +156,7 @@ const add = (a, b) => a + b;
 ```javascript
 const fn = (...args) => {
   console.log(args);
-
 };
-
 ```
 
 一句话总结
@@ -170,4 +168,4 @@ const fn = (...args) => {
 **“普通函数和箭头函数到底什么时候该用哪个？”**  
 这个在前端里非常常用。
 
-![](./images/Compiled code starts.png)
+![](./images/Compiled_code_starts.png)
