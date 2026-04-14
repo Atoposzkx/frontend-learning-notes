@@ -4,11 +4,11 @@
 
 ```javascript
 // Introduction to Arrays
-const friend1 = 'Michael';
-const friend2 = 'Steven';
-const friend3 = 'Peter';
+const friend1 = "Michael";
+const friend2 = "Steven";
+const friend3 = "Peter";
 
-const friends = ['Michael', 'Steven', 'Peter'];
+const friends = ["Michael", "Steven", "Peter"];
 console.log(friends);
 
 const y = new Array(1991, 1984, 2008, 2020);
@@ -24,11 +24,11 @@ console.log(friends[friends.length - 1]);
 
 ```javascript
 // Add elements
-const newLength = friends.push('Jay');
+const newLength = friends.push("Jay");
 console.log(friends);
 console.log(newLength);
 
-friends.unshift('John');
+friends.unshift("John");
 console.log(friends);
 
 // Remove elements
@@ -40,16 +40,16 @@ console.log(friends);
 friends.shift(); // First
 console.log(friends);
 
-console.log(friends.indexOf('Steven'));
-console.log(friends.indexOf('Bob'));
+console.log(friends.indexOf("Steven"));
+console.log(friends.indexOf("Bob"));
 
 friends.push(23);
-console.log(friends.includes('Steven'));
-console.log(friends.includes('Bob'));
+console.log(friends.includes("Steven"));
+console.log(friends.includes("Bob"));
 console.log(friends.includes(23));
 
-if (friends.includes('Steven')) {
-  console.log('You have a friend called Steven');
+if (friends.includes("Steven")) {
+  console.log("You have a friend called Steven");
 }
 ```
 
@@ -104,40 +104,39 @@ console.log(jonas);
 ```js
 //Object Referrnces in Practice (Shallow vs Deep Copies)
 
-let lastName = 'Williams';
+let lastName = "Williams";
 let oldLastName = lastName;
-lastName = 'Davis';
+lastName = "Davis";
 console.log(lastName, oldLastName);
 
 const jessica = {
-  firstName: 'Jessica',
-  lastName: 'Williams',
+  firstName: "Jessica",
+  lastName: "Williams",
   age: 27,
 };
-const marriedJessica = jessica1;
-marriedJessica.lastName = 'Davis';
+const marriedJessica = jessica;
+marriedJessica.lastName = "Davis";
 
-console.log('Before:', jessica);
-console.log('After:', marriedJessica);
+console.log("Before:", jessica);
+console.log("After:", marriedJessica);
 
 const jessica2 = {
-  firstName: 'Jessica',
-  lastName: 'Williams',
+  firstName: "Jessica",
+  lastName: "Williams",
   age: 27,
-  family: ['Alice', 'Bob'],
+  family: ["Alice", "Bob"],
 };
 // Object.assign() 是浅拷贝：
 // 它只复制第一层属性。
 // 如果属性值是引用类型（如对象、数组），复制的是引用地址，不是新的独立内容。
 const jessicaCopy = Object.assign({}, jessica2);
 
-jessicaCopy.lastName = 'Davis';
+jessicaCopy.lastName = "Davis";
 
-jessicaCopy.family.push('Mary');
+jessicaCopy.family.push("Mary");
 
-jessicaCopy.family.push('John');
+jessicaCopy.family.push("John");
 //两者的family是一样的
-console.log('Before marriage', jessica2);
-console.log('After marriage', jessicaCopy);
+console.log("Before marriage", jessica2);
+console.log("After marriage", jessicaCopy);
 ```
-

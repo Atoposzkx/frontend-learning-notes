@@ -1,4 +1,4 @@
-# 06 Hoisting-This
+# 06 Scope, Hoisting, and this
 
 ## 1.hositing
 
