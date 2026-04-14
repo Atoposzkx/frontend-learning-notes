@@ -252,60 +252,11 @@ const add = () => {
 
 因为 `test` / `add` 在 TDZ 中。
 
-# 
 
-```
-## Hoisting（提升）
 
-Hoisting 指的是：
-变量和函数声明在代码执行前，
-会在当前作用域的创建阶段被先处理。
-
-注意：
-hoisting 不是代码真的移动到顶部，
-而是 JavaScript 在执行前先登记声明。
-
-### 1. function declaration
-函数声明会被完整提升，因此可以在声明前调用。
-
-```js
-hello();
-function hello() {
-  console.log("hi");
-}
-```
-
-2. var
-
-var 会被提升，并初始化为 `undefined`。
-
-```
-console.log(a); // undefined
-var a = 10;
-```
-
-3. let / const
-
-let 和 const 也会提升，
- 但不会初始化为 `undefined`，
- 而是在声明前处于 TDZ（暂时性死区），不能访问。
-
-```
-console.log(a); // ReferenceError
-let a = 10;
-```
-
-4. 函数表达式 / 箭头函数
-
-它们的提升规则取决于声明它们的变量：
-
-- var：提升为 undefined
-- let / const：进入 TDZ
-
-```
 ---
 
-# 十、超短版总结
+十、超短版总结
 
 ```txt
 function declaration：完整提升
@@ -608,6 +559,219 @@ function test() {
 
 ------
 
-### 11.栈内存与堆内存
+## 3.栈内存与堆内存
 
 ![](./images/longshot20260407103500.png)
+
+## 4.作用域，scope总结笔记
+
+
+
+![](/Users/atoposzkx/code/fronted-learning/frontend-learning-notes/JavaScript/images/longshot20260403141240.png)
+
+
+
+
+
+![](/Users/atoposzkx/code/fronted-learning/frontend-learning-notes/JavaScript/images/longshot20260403142446.png)
+
+
+------
+
+#### 1.Scoping 主要回答两个问题：
+
+- **变量存在于哪里**
+- **某个位置能不能访问这个变量**
+
+也就是：
+
+> **Where do variables live?**
+> **Where can we access a variable?**
+
+------
+
+#### 2. JavaScript 有 3 种作用域
+
+##### ① Global Scope（全局作用域）
+
+最外层定义的变量属于全局作用域。
+
+```js
+const name = "Jonas";
+```
+
+------
+
+##### ② Function Scope（函数作用域）
+
+在函数内部声明的变量，属于函数作用域。
+
+```js
+function test() {
+  const age = 20;
+}
+```
+
+------
+
+##### ③ Block Scope5（块级作用域）
+
+由 `{}` 形成的作用域，比如：
+
+- `if`
+- `for`
+- `while`
+
+只有 `let` 和 `const` 受块级作用域限制。
+
+```js
+if (true) {
+  const x = 10;
+  let y = 20;
+}
+```
+
+------
+
+#### 3. `let` / `const 和 `var` 的区别
+
+`let` 和 `const`
+
+是 **块级作用域**
+
+`var`
+
+不是块级作用域，它会归到最近的**函数作用域**
+
+```js
+if (true) {
+  var a = 1;
+  let b = 2;
+}
+
+console.log(a); // 1
+console.log(b); // 报错
+```
+
+------
+
+#### 4. JavaScript 是词法作用域（Lexical Scoping）
+
+这句话很重要：
+
+> **变量的可访问规则，由代码写的位置决定**
+> 而不是由运行时调用顺序决定
+
+也就是说：
+
+- 函数写在哪里
+- 块写在哪里
+
+这些在代码写出来时，作用域关系就已经确定了。
+
+------
+
+#### 5. 什么是 Scope Chain（作用域链）
+
+每一个作用域都可以访问它外层作用域中的变量。
+
+这就形成了：
+
+> **作用域链**
+
+也就是当前作用域找不到变量时，会沿着外层一层层向上找。
+
+------
+
+#### 6. 什么是变量查找（Variable Lookup）
+
+如果当前作用域没有这个变量，JavaScript 引擎会：
+
+1. 先查当前作用域
+2. 没找到就查外层作用域
+3. 继续往外查
+4. 一直到全局作用域
+
+这个过程叫：
+
+> **variable lookup**
+
+------
+
+#### 7. 作用域链是单向的
+
+这句话也很关键：
+
+> **内层可以访问外层**
+> **外层不能访问内层**
+
+也就是说：
+
+- 子作用域可以向外找
+- 父作用域永远不能反过来访问子作用域里的局部变量
+
+------
+
+#### 8. 作用域链 ≠ 调用顺序
+
+这个是最容易错的点。
+
+> **作用域链和函数调用顺序没有关系**
+> 它只和函数定义的位置有关
+
+所以：
+
+- `call stack` 看谁调用了谁
+- `scope chain` 看函数写在哪里
+
+# 
+
+```md
+## Scope / Scoping / Scope Chain 总结
+
+### 1. Scope
+作用域表示变量在代码中的可访问范围。
+
+### 2. JavaScript 中的 3 种作用域
+- 全局作用域（Global Scope）
+- 函数作用域（Function Scope）
+- 块级作用域（Block Scope）
+
+### 3. let / const / var
+- let 和 const 是块级作用域
+- var 不是块级作用域，而是函数作用域
+
+### 4. Scoping
+Scoping 是 JavaScript 管理变量可访问性的规则。
+
+### 5. Lexical Scoping
+JavaScript 使用词法作用域：
+变量是否可访问，由代码书写位置决定，而不是由函数调用位置决定。
+
+### 6. Scope Chain
+每个作用域都能访问外层作用域的变量，这种层层向外的关系叫作用域链。
+
+### 7. Variable Lookup
+当前作用域找不到变量时，JavaScript 会沿着作用域链向外查找。
+
+### 8. 单向性
+作用域链是单向的：
+内层可以访问外层，外层不能访问内层。
+
+### 9. 重要区别
+- 调用栈（Call Stack）看函数调用顺序
+- 作用域链（Scope Chain）看函数定义位置
+```
+
+# 
+
+```txt
+scope = 变量能在哪访问
+scoping = JS 决定访问规则的机制
+scope chain = 当前找不到变量时，一层层向外找
+```
+
+1. **JavaScript 是词法作用域**
+2. **内层作用域可以访问外层变量**
+3. **作用域链和函数调用顺序无关，只和定义位置有关**
+
