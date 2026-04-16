@@ -14,7 +14,7 @@
 - 函数 / 数组 / 对象
 - DOM 与小项目
 - 执行上下文 / 作用域 / this
-- 解构 / spread / rest
+- 解构 / spread / rest -对象增强 / optional chaining(?.) / 对象遍历的方式
 
 ## 仓库结构
 
