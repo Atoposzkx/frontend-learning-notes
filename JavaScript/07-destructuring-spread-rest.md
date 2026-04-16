@@ -233,4 +233,18 @@ const x = [23, 5, 7];
 add(...x);
 ```
 
+# 2.for...of循环
+
+```javascript
+const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
+
+for (const item of menu) console.log(item);
+//适用于可迭代对象，不包括数组
+//如果想要打印index
+for (const [i, el] of menu.entries()) {
+  console.log(`${i + 1}:${el}`);
+}
+
+```
+
 ## 
